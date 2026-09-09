@@ -40,3 +40,24 @@ jobs:
       - name: Publicar
         id: deployment
         uses: actions/deploy-pages@v4
+
+  smoke:
+    name: Validar site publicado
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Conferir página, prova e infográfico
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://pedrocarvalhokubo.github.io/apps-lulu"
+          curl --fail --silent --show-error --location --retry 8 --retry-all-errors --retry-delay 5 "$base/" -o /tmp/index.html
+          grep -q "Estudos da Lulu" /tmp/index.html
+          script_path="$(grep -oE 'src="/apps-lulu/assets/[^"]+\.js"' /tmp/index.html | head -1 | cut -d'"' -f2)"
+          test -n "$script_path"
+          curl --fail --silent --show-error --location "$base${script_path#/apps-lulu}" -o /tmp/app.js
+          test -s /tmp/app.js
+          curl --fail --silent --show-error --location "$base/math/prova-matematica-capitulo-9-lulu.pdf" -o /tmp/prova.pdf
+          test "$(wc -c < /tmp/prova.pdf)" -gt 50000
+          curl --fail --silent --show-error --location "$base/math/06-sentencas-identidades.svg" -o /tmp/infografico.svg
+          grep -q "<svg" /tmp/infografico.svg
