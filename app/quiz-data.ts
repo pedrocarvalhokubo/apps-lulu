@@ -1,0 +1,466 @@
+export type QuizQuestion = {
+  id: number;
+  topic: string;
+  prompt: string;
+  support: string;
+  correct: string;
+  options: { id: string; label: string; explanation: string }[];
+};
+
+export type MockExam = {
+  id: string;
+  title: string;
+  shortTitle: string;
+  description: string;
+  questionIds: number[];
+  questionCount: number;
+  minutes: number;
+  level: "Focused" | "Complete";
+};
+
+export const quizQuestions: QuizQuestion[] = [
+  {
+    id: 1,
+    topic: "Evidence",
+    prompt: "Which statement about William is false?",
+    support: "Choose the statement that directly conflicts with the passage.",
+    correct: "c",
+    options: [
+      { id: "a", label: "He left school because his family could not pay the fees.", explanation: "True. The crop failure and famine left his family unable to pay his annual school fees." },
+      { id: "b", label: "He used diagrams when English vocabulary was difficult.", explanation: "True. The passage says he painstakingly studied science-book diagrams despite struggling with English." },
+      { id: "c", label: "His school supplied the materials for his first windmill.", explanation: "Correct. This is false: William was out of school and gathered discarded parts from scrap yards." },
+      { id: "d", label: "His windmill eventually helped pump groundwater.", explanation: "True. It first lit bulbs and later powered a pump that drew groundwater." },
+    ],
+  },
+  {
+    id: 2,
+    topic: "Evidence",
+    prompt: "Which evidence best proves that William showed initiative?",
+    support: "Initiative means acting before someone tells you what to do.",
+    correct: "b",
+    options: [
+      { id: "a", label: "The drought scorched the earth.", explanation: "This describes the crisis, but not an action William chose to take." },
+      { id: "b", label: "He went to the library and studied diagrams after leaving school.", explanation: "Correct. He independently found another path to learn instead of waiting for formal classes to resume." },
+      { id: "c", label: "His neighbors mocked the tower.", explanation: "This shows public doubt, not William's initiative by itself." },
+      { id: "d", label: "The wind remained powerful.", explanation: "This identifies a resource, but does not show William taking action." },
+    ],
+  },
+  {
+    id: 3,
+    topic: "Figurative Language",
+    prompt: "What does the metaphorical “dark cloud” over William's future represent?",
+    support: "The cloud appears just after William is forced to leave school.",
+    correct: "d",
+    options: [
+      { id: "a", label: "A storm forming above the library", explanation: "The phrase is not describing literal weather above a building." },
+      { id: "b", label: "The shade produced by the windmill", explanation: "The windmill had not been built yet, and the phrase is figurative." },
+      { id: "c", label: "A prediction that rain would return", explanation: "The cloud does not signal hopeful rainfall in this context." },
+      { id: "d", label: "The threat that hardship could end his educational dreams", explanation: "Correct. The image of darkness represents uncertainty, loss, and danger to his future." },
+    ],
+  },
+  {
+    id: 4,
+    topic: "Figurative Language",
+    prompt: "What is the “silver lining” William creates?",
+    support: "Connect the idiom to the positive result that emerged from ruin.",
+    correct: "a",
+    options: [
+      { id: "a", label: "A useful solution created from a devastating situation", explanation: "Correct. William turns wind and discarded materials into electricity and access to water." },
+      { id: "b", label: "A metal coating placed on the windmill", explanation: "The phrase is an idiom, not a literal silver material." },
+      { id: "c", label: "A cloud that finally produces rain", explanation: "The positive outcome comes from ingenuity, not from the weather changing." },
+      { id: "d", label: "Money earned by selling tractor parts", explanation: "The passage never says William sold the parts for money." },
+    ],
+  },
+  {
+    id: 5,
+    topic: "Structure",
+    prompt: "Why does the author begin with familiar weather expressions?",
+    support: "Think about how paragraph 1 prepares the reader for William's story.",
+    correct: "c",
+    options: [
+      { id: "a", label: "To teach readers how to forecast hurricanes", explanation: "The passage is not a weather-forecasting guide." },
+      { id: "b", label: "To prove that all idioms have the same meaning", explanation: "The expressions have different meanings and are used as a bridge, not as identical examples." },
+      { id: "c", label: "To connect figurative weather language with a literal survival story", explanation: "Correct. The opening creates the central bridge between atmospheric metaphors and real meteorological hardship." },
+      { id: "d", label: "To show that William invented weather metaphors", explanation: "The expressions existed before William's story and are used by the author." },
+    ],
+  },
+  {
+    id: 6,
+    topic: "Structure",
+    prompt: "Which sequence best represents the passage's cause-and-effect structure?",
+    support: "Follow the main events from crisis to impact.",
+    correct: "b",
+    options: [
+      { id: "a", label: "Windmill → drought → library → school fees", explanation: "This reverses the order of events and their causal relationship." },
+      { id: "b", label: "Drought → crop failure → school dropout → self-study → windmill", explanation: "Correct. Each event creates the conditions for the next major development." },
+      { id: "c", label: "Library → famine → neighbors → rain", explanation: "This does not match the chronology or the passage's causal links." },
+      { id: "d", label: "Mockery → crop failure → memoir → drought", explanation: "These events are out of order and do not explain one another." },
+    ],
+  },
+  {
+    id: 7,
+    topic: "Character Motivation",
+    prompt: "What most strongly motivates William to keep experimenting?",
+    support: "Use his situation and the solution he imagines.",
+    correct: "a",
+    options: [
+      { id: "a", label: "The need to solve real problems facing his family and village", explanation: "Correct. Famine, lack of electricity, and lack of water give his scientific learning an urgent purpose." },
+      { id: "b", label: "A promise that his neighbors would make him famous", explanation: "His neighbors mocked him; they did not promise fame." },
+      { id: "c", label: "A school assignment with a high grade", explanation: "He was no longer attending school, so the project was not an assigned task." },
+      { id: "d", label: "A wish to prove that wind is dangerous", explanation: "He wants to harness wind as a resource, not prove that it is dangerous." },
+    ],
+  },
+  {
+    id: 8,
+    topic: "Theme",
+    prompt: "What does the passage mean when it says natural forces are neither inherently good nor evil?",
+    support: "Compare the destructive climate event with William's use of wind.",
+    correct: "d",
+    options: [
+      { id: "a", label: "Weather never causes harm.", explanation: "The drought clearly devastates crops, education, and food security." },
+      { id: "b", label: "People can completely control every climate event.", explanation: "William adapts to nature; he does not control the drought itself." },
+      { id: "c", label: "Wind and drought always have the same effect.", explanation: "The passage emphasizes different effects and different human responses." },
+      { id: "d", label: "The impact of a natural force also depends on how humans respond and use it.", explanation: "Correct. Wind becomes useful energy when William applies science and purpose to it." },
+    ],
+  },
+  {
+    id: 9,
+    topic: "Vocabulary",
+    prompt: "In the passage, “weather expressions permeate human language” means they…",
+    support: "Use the surrounding examples of common expressions.",
+    correct: "c",
+    options: [
+      { id: "a", label: "appear only in science textbooks", explanation: "The author says these expressions are common in everyday speech." },
+      { id: "b", label: "make language impossible to understand", explanation: "Their universal weather images often make ideas easier to understand." },
+      { id: "c", label: "spread throughout and appear in many parts of language", explanation: "Correct. Permeate means to spread or diffuse throughout something." },
+      { id: "d", label: "describe only literal atmospheric conditions", explanation: "Many examples in the passage are figurative, not literal." },
+    ],
+  },
+  {
+    id: 10,
+    topic: "Vocabulary",
+    prompt: "William refused to succumb to despair. What did he refuse to do?",
+    support: "Consider his decision to keep learning and building.",
+    correct: "a",
+    options: [
+      { id: "a", label: "Give in to hopelessness", explanation: "Correct. Succumb means to surrender or fail to resist a negative force." },
+      { id: "b", label: "Use available wind", explanation: "He did the opposite: he harnessed the wind." },
+      { id: "c", label: "Read difficult diagrams", explanation: "He persisted in studying them." },
+      { id: "d", label: "Collect discarded materials", explanation: "He actively collected and repurposed them." },
+    ],
+  },
+  {
+    id: 11,
+    topic: "Vocabulary",
+    prompt: "Why is the wind described as an untapped resource?",
+    support: "It was present and powerful before William built the turbine.",
+    correct: "b",
+    options: [
+      { id: "a", label: "It had disappeared during the drought.", explanation: "The passage says the wind remained constant and powerful." },
+      { id: "b", label: "It was available but had not yet been used to help the village.", explanation: "Correct. Untapped means present and available, but not yet turned to advantage." },
+      { id: "c", label: "It was stored inside a car battery.", explanation: "The battery stored electricity; it did not contain the wind." },
+      { id: "d", label: "It could only be used after rainfall.", explanation: "William uses the wind precisely while the rains are absent." },
+    ],
+  },
+  {
+    id: 12,
+    topic: "Vocabulary",
+    prompt: "Which action best demonstrates ingenuity?",
+    support: "Ingenuity combines creativity with practical problem-solving.",
+    correct: "d",
+    options: [
+      { id: "a", label: "Waiting for another person to solve the crisis", explanation: "This is passive and does not involve creative problem-solving." },
+      { id: "b", label: "Repeating that the drought was severe", explanation: "Describing a problem is not the same as inventing a solution." },
+      { id: "c", label: "Ignoring every scientific idea", explanation: "William uses scientific ideas rather than rejecting them." },
+      { id: "d", label: "Turning scrap parts and wind into a working source of power", explanation: "Correct. He creatively combines knowledge and limited materials to solve a difficult problem." },
+    ],
+  },
+  {
+    id: 13,
+    topic: "Vocabulary",
+    prompt: "Which definition best matches resilience?",
+    support: "Think about recovering and continuing after a setback.",
+    correct: "c",
+    options: [
+      { id: "a", label: "A total absence of difficulty", explanation: "Resilience is needed because difficulty exists." },
+      { id: "b", label: "A scientific name for wind energy", explanation: "Resilience describes a capacity in people or systems, not a form of energy." },
+      { id: "c", label: "The capacity to recover and keep going after hardship", explanation: "Correct. William adapts after drought and school dropout instead of ending his efforts." },
+      { id: "d", label: "A feeling of uncertainty about an idea", explanation: "That definition matches doubt." },
+    ],
+  },
+  {
+    id: 14,
+    topic: "Vocabulary",
+    prompt: "The windmill was a tangible solution. What does tangible mean here?",
+    support: "Contrast a real working machine with an abstract hope.",
+    correct: "a",
+    options: [
+      { id: "a", label: "Real, concrete, and measurable", explanation: "Correct. The windmill physically existed and produced observable results." },
+      { id: "b", label: "Imaginary and impossible to observe", explanation: "This is the opposite of tangible." },
+      { id: "c", label: "Related only to figurative language", explanation: "Tangible emphasizes physical reality, not figurative meaning." },
+      { id: "d", label: "Preserved forever in a memoir", explanation: "That idea is closer to immortalized." },
+    ],
+  },
+  {
+    id: 15,
+    topic: "Argument",
+    prompt: "Which claim best evaluates personal drive and institutional support in William's story?",
+    support: "Choose a nuanced claim that can be defended with more than one detail.",
+    correct: "b",
+    options: [
+      { id: "a", label: "Libraries and schools never matter when someone is determined.", explanation: "This ignores the essential knowledge William found in the community library." },
+      { id: "b", label: "Personal drive activated the opportunity the library provided; both mattered, but initiative turned knowledge into action.", explanation: "Correct. This balances the support of an institution with William's persistence, vision, and effort." },
+      { id: "c", label: "Formal school alone built the windmill for William.", explanation: "He was out of school and constructed the turbine himself from scrap." },
+      { id: "d", label: "Personal drive matters only when nobody has access to information.", explanation: "His drive remains important precisely because he actively seeks and uses available information." },
+    ],
+  },
+  {
+    id: 16,
+    topic: "Argument",
+    prompt: "Which evidence would best support the claim that institutional access still mattered?",
+    support: "Look for a resource provided by the community.",
+    correct: "d",
+    options: [
+      { id: "a", label: "The soil was bone-dry.", explanation: "This shows adversity, not institutional support." },
+      { id: "b", label: "The neighbors mocked his tower.", explanation: "This is opposition from the community, not useful institutional access." },
+      { id: "c", label: "The wind remained powerful.", explanation: "Wind is a natural resource, not an institution." },
+      { id: "d", label: "The community library gave him access to science textbooks and diagrams.", explanation: "Correct. The library provided the knowledge resource that supported his independent learning." },
+    ],
+  },
+  {
+    id: 17,
+    topic: "Synthesis",
+    prompt: "Which sentence best synthesizes adversity, resilience, and ingenuity?",
+    support: "A synthesis should connect all three concepts in one larger insight.",
+    correct: "c",
+    options: [
+      { id: "a", label: "Adversity and ingenuity are two vocabulary words in the passage.", explanation: "This identifies terms but does not connect their ideas." },
+      { id: "b", label: "Resilient people never experience doubt or failure.", explanation: "Resilience is recovery from hardship, not the absence of doubt or setbacks." },
+      { id: "c", label: "Adversity creates a test, resilience sustains effort, and ingenuity transforms that effort into a new solution.", explanation: "Correct. The sentence explains how all three ideas work together in William's journey." },
+      { id: "d", label: "Ingenuity means waiting passively for adversity to end.", explanation: "Ingenuity and initiative involve active, creative problem-solving." },
+    ],
+  },
+  {
+    id: 18,
+    topic: "Synthesis",
+    prompt: "Why does the author end with a question about building a windmill?",
+    support: "Think about the shift from William's story to the reader's own life.",
+    correct: "a",
+    options: [
+      { id: "a", label: "To challenge readers to apply William's resilient mindset to their own adversity", explanation: "Correct. The final question turns the theme into a personal reflection and call to act." },
+      { id: "b", label: "To require every reader to construct a real turbine", explanation: "The windmill becomes a figurative model for responding creatively, not a literal assignment." },
+      { id: "c", label: "To suggest that storms can always be prevented", explanation: "The passage focuses on adaptation, not total prevention of hardship." },
+      { id: "d", label: "To introduce a new character after the conclusion", explanation: "No new character is introduced; the focus shifts to the reader." },
+    ],
+  },
+  {
+    id: 19,
+    topic: "Vocabulary",
+    prompt: "Which sentence uses “meteorological” correctly?",
+    support: "Remember that the word relates to weather and atmospheric conditions.",
+    correct: "a",
+    options: [
+      { id: "a", label: "Meteorological reports warned that the drought could continue.", explanation: "This is correct because weather reports describe atmospheric and climate conditions." },
+      { id: "b", label: "William used a meteorological bicycle chain to build the turbine.", explanation: "A bicycle chain is mechanical, not a weather or atmospheric condition." },
+      { id: "c", label: "The library charged a meteorological school fee.", explanation: "A school fee is financial and has no direct connection to weather." },
+      { id: "d", label: "His neighbors felt meteorological when the windmill worked.", explanation: "Meteorological does not describe a person's emotion." },
+    ],
+  },
+  {
+    id: 20,
+    topic: "Vocabulary",
+    prompt: "Which situation is the clearest example of a famine?",
+    support: "A famine affects food access across a large group or region.",
+    correct: "c",
+    options: [
+      { id: "a", label: "One family forgets to buy groceries for dinner.", explanation: "This is a short, individual problem, not a widespread food crisis." },
+      { id: "b", label: "A shop runs out of one kind of fruit for a day.", explanation: "A temporary shortage of one product is not an extreme regional lack of food." },
+      { id: "c", label: "Crop failure leaves communities across a region without enough food.", explanation: "This matches famine: a severe, widespread food shortage that causes hunger and crisis." },
+      { id: "d", label: "A farmer chooses to plant a different crop next year.", explanation: "Changing crops is an agricultural decision, not evidence of widespread starvation." },
+    ],
+  },
+  {
+    id: 21,
+    topic: "Vocabulary",
+    prompt: "What would William have done if he had waited passively?",
+    support: "Passively means allowing events to happen without taking initiative.",
+    correct: "b",
+    options: [
+      { id: "a", label: "He would have searched the library for new information.", explanation: "Searching for information is active and shows initiative." },
+      { id: "b", label: "He would have done nothing while hoping the crisis solved itself.", explanation: "This is passive because it involves no action to change the situation." },
+      { id: "c", label: "He would have tested different scrap parts.", explanation: "Testing possible solutions is active problem-solving." },
+      { id: "d", label: "He would have adapted the turbine after a failed attempt.", explanation: "Adapting after failure demonstrates resilience and action, not passivity." },
+    ],
+  },
+  {
+    id: 22,
+    topic: "Vocabulary",
+    prompt: "Why is William's achievement described as “immortalized” in his memoir?",
+    support: "Think about what a written record can do for a person's story.",
+    correct: "d",
+    options: [
+      { id: "a", label: "The memoir made William physically unable to grow older.", explanation: "Immortalized is figurative here; it does not mean a person literally lives forever." },
+      { id: "b", label: "The windmill could never break or need repairs.", explanation: "The word refers to preserving the story, not guaranteeing the machine lasts forever." },
+      { id: "c", label: "Everyone forgot the drought after reading the memoir.", explanation: "The memoir preserves memories; it does not erase the crisis." },
+      { id: "d", label: "The memoir preserved his story so future readers could remember it.", explanation: "This is exactly what immortalized means in the passage." },
+    ],
+  },
+  {
+    id: 23,
+    topic: "Vocabulary",
+    prompt: "Which action best shows adaptability?",
+    support: "Adaptability is the ability to adjust to changed conditions.",
+    correct: "a",
+    options: [
+      { id: "a", label: "After leaving school, William changed how he learned and used library diagrams.", explanation: "He adjusted to a new situation and found another effective path to learning." },
+      { id: "b", label: "The drought continued to damage the same dry soil.", explanation: "This describes an ongoing condition, not someone adjusting to it." },
+      { id: "c", label: "The neighbors repeated the same doubts about his project.", explanation: "Repeating an opinion does not demonstrate adjustment to new conditions." },
+      { id: "d", label: "The school fee remained impossible for his family to pay.", explanation: "This is a financial obstacle, not an adaptive response." },
+    ],
+  },
+  {
+    id: 24,
+    topic: "Vocabulary",
+    prompt: "Which detail most clearly demonstrates William's vision?",
+    support: "Vision means seeing a useful future possibility before it physically exists.",
+    correct: "c",
+    options: [
+      { id: "a", label: "He noticed that the soil was dry.", explanation: "This is an observation of a present fact, but it does not yet imagine a future solution." },
+      { id: "b", label: "He heard his neighbors call the tower junk.", explanation: "This detail shows public doubt, not William's ability to imagine what could be built." },
+      { id: "c", label: "He imagined scrap and wind becoming electricity and water access.", explanation: "He could see the possible solution before the working windmill existed." },
+      { id: "d", label: "He learned that a memoir records past events.", explanation: "This concerns preserving the past, not imagining a future solution." },
+    ],
+  },
+  {
+    id: 25,
+    topic: "Evidence",
+    prompt: "Which statement is false according to the passage?",
+    support: "Check each statement against a specific detail in the text.",
+    correct: "b",
+    options: [
+      { id: "a", label: "The drought caused both agricultural and educational consequences.", explanation: "This is true: crops failed, famine spread, and William had to leave school." },
+      { id: "b", label: "William waited until formal school reopened before studying science again.", explanation: "This is false. He continued learning independently through the community library." },
+      { id: "c", label: "The windmill first produced electricity and later helped draw water.", explanation: "This is true and follows the sequence described in paragraph 4." },
+      { id: "d", label: "The author connects literal weather with figurative language.", explanation: "This is true and forms the central structure of the passage." },
+    ],
+  },
+  {
+    id: 26,
+    topic: "Figurative Language",
+    prompt: "In the passage, what does it mean to “weather the storm”?",
+    support: "The expression is explained before William's story begins.",
+    correct: "d",
+    options: [
+      { id: "a", label: "To measure rainfall during dangerous weather", explanation: "That would be a literal weather activity, but the expression is an idiom." },
+      { id: "b", label: "To hide indoors until every problem disappears", explanation: "The passage emphasizes strength and active adaptation, not simply hiding and waiting." },
+      { id: "c", label: "To predict exactly when a drought will end", explanation: "The idiom concerns responding to hardship, not forecasting weather." },
+      { id: "d", label: "To remain strong and continue through a difficult experience", explanation: "This captures the figurative meaning and matches William's response to adversity." },
+    ],
+  },
+  {
+    id: 27,
+    topic: "Figurative Language",
+    prompt: "If a clearing sky symbolizes hope, what kind of literary device is being used?",
+    support: "A physical image represents a deeper abstract idea.",
+    correct: "b",
+    options: [
+      { id: "a", label: "Literal measurement", explanation: "The sky is not being measured; its appearance carries an additional meaning." },
+      { id: "b", label: "Symbolism", explanation: "A concrete natural image—the clearing sky—represents the abstract idea of hope." },
+      { id: "c", label: "Chronological order", explanation: "Chronological order organizes events by time and does not explain the sky's deeper meaning." },
+      { id: "d", label: "Direct evidence", explanation: "Direct evidence supports a claim with text details; it is not the name of this figurative device." },
+    ],
+  },
+  {
+    id: 28,
+    topic: "Character Motivation",
+    prompt: "What can readers infer from William continuing after his neighbors mocked him?",
+    support: "An inference combines a text detail with logical reasoning.",
+    correct: "a",
+    options: [
+      { id: "a", label: "He trusted evidence and his purpose more than public approval.", explanation: "His persistence shows that scientific possibility and community need mattered more to him than mockery." },
+      { id: "b", label: "He secretly agreed that the tower was useless.", explanation: "His continued work and successful result directly contradict this idea." },
+      { id: "c", label: "He built the tower mainly to entertain his neighbors.", explanation: "His goal was to solve urgent problems involving electricity and water." },
+      { id: "d", label: "He already knew every experiment would work perfectly.", explanation: "The passage shows vision and persistence, not certainty that every attempt would succeed." },
+    ],
+  },
+  {
+    id: 29,
+    topic: "Structure",
+    prompt: "What is the main purpose of paragraph 5?",
+    support: "Paragraph 5 follows the successful windmill and precedes the challenge to the reader.",
+    correct: "c",
+    options: [
+      { id: "a", label: "To introduce Malawi and the drought for the first time", explanation: "Those facts are introduced earlier, especially in paragraph 2." },
+      { id: "b", label: "To list every machine part in the windmill", explanation: "The parts appear in paragraph 4; paragraph 5 focuses on meaning and theme." },
+      { id: "c", label: "To interpret William's achievement as a larger lesson about adversity and innovation", explanation: "The paragraph shifts from what happened to what the story means." },
+      { id: "d", label: "To argue that natural forces are always harmful", explanation: "It argues the opposite: natural forces are not inherently good or evil." },
+    ],
+  },
+  {
+    id: 30,
+    topic: "Theme",
+    prompt: "Which conclusion is most strongly supported by the whole passage?",
+    support: "Choose the idea that accounts for both William's effort and the resources he could access.",
+    correct: "b",
+    options: [
+      { id: "a", label: "Determination makes knowledge and community resources unnecessary.", explanation: "William's drive mattered, but the library's books and diagrams were essential resources." },
+      { id: "b", label: "Opportunity becomes powerful when a person uses it with initiative, resilience, and ingenuity.", explanation: "This conclusion connects the library opportunity with the personal qualities that turned knowledge into action." },
+      { id: "c", label: "Institutions can solve every crisis without individual action.", explanation: "The library provided access, but William had to study, experiment, and build the solution himself." },
+      { id: "d", label: "Public doubt is reliable evidence that an idea will fail.", explanation: "William's success proves that the neighbors' skepticism was not reliable evidence." },
+    ],
+  },
+];
+
+export const mockExams: MockExam[] = [
+  {
+    id: "reading-evidence",
+    title: "Reading & Evidence Test",
+    shortTitle: "Reading & Evidence",
+    description: "Find false statements, select precise evidence, follow structure, and infer motivation.",
+    questionIds: [1, 2, 5, 6, 7, 8, 15, 16, 18, 25, 28, 29],
+    questionCount: 12,
+    minutes: 18,
+    level: "Focused",
+  },
+  {
+    id: "vocabulary",
+    title: "Vocabulary in Context Test",
+    shortTitle: "Vocabulary",
+    description: "Use context—not memorization alone—to identify the meaning of the key terms.",
+    questionIds: [9, 10, 11, 12, 13, 14, 19, 20, 21, 22, 23, 24],
+    questionCount: 12,
+    minutes: 15,
+    level: "Focused",
+  },
+  {
+    id: "analysis-themes",
+    title: "Language & Themes Test",
+    shortTitle: "Language & Themes",
+    description: "Analyze metaphors, symbolism, structure, theme, argument, and synthesis.",
+    questionIds: [3, 4, 5, 7, 8, 15, 17, 18, 26, 27, 29, 30],
+    questionCount: 12,
+    minutes: 18,
+    level: "Focused",
+  },
+  {
+    id: "complete",
+    title: "Complete Mock Exam",
+    shortTitle: "Complete Mock",
+    description: "A new 20-question mix from the complete bank, covering every learning objective.",
+    questionIds: Array.from({ length: 30 }, (_, index) => index + 1),
+    questionCount: 20,
+    minutes: 30,
+    level: "Complete",
+  },
+];
+
+export const quizTopics = [
+  "Evidence",
+  "Figurative Language",
+  "Structure",
+  "Character Motivation",
+  "Theme",
+  "Vocabulary",
+  "Argument",
+  "Synthesis",
+] as const;
